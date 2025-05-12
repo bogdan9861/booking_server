@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Place" ADD COLUMN "endDate" DATETIME;
+ALTER TABLE "Place" ADD COLUMN "startDate" DATETIME;
