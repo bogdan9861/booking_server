@@ -131,7 +131,7 @@ const getMy = async (req, res) => {
     const places = await prisma.place.findMany({
       where: {
         PlaceToUser: {
-          every: {
+          some: {
             userId: req.user.id,
             endDate: {
               gt: new Date(),
