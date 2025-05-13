@@ -139,6 +139,14 @@ const getMy = async (req, res) => {
           },
         },
       },
+      include: {
+        PlaceToUser: {
+          include: {
+            place: false,
+            user: false,
+          },
+        },
+      },
     });
 
     res.status(200).json(places);
