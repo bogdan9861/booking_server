@@ -37,6 +37,13 @@ const create = async (req, res) => {
 const getAll = async (req, res) => {
   try {
     const places = await prisma.place.findMany({
+      where: {
+        PlaceToUser: {
+          every: {
+            user: false,
+          },
+        },
+      },
       include: {
         PlaceToUser: {
           include: {
