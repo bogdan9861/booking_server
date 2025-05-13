@@ -126,9 +126,31 @@ const book = async (req, res) => {
   }
 };
 
+const getMy = async (req, res) => {
+  try {
+    const places = await prisma.place.findMany({
+      where: {
+        PlaceToUser: {
+          every: {
+            userId: req.user.id,
+            endDate: {
+              gt: new Date(),
+            },
+          },
+        },
+      },
+    });
+
+    res.status(200).json(places);
+  } catch (error) {
+    res.status(500).json({ message: "Unknown server error" });
+  }
+};
+
 module.exports = {
   create,
   remove,
   getAll,
   book,
+  getMy,
 };
