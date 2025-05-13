@@ -36,6 +36,10 @@ const create = async (req, res) => {
 
 const getAll = async (req, res) => {
   try {
+    const { location } = req.query;
+
+    console.log(location);
+
     const places = await prisma.place.findMany({
       where: {
         PlaceToUser: {
@@ -44,6 +48,9 @@ const getAll = async (req, res) => {
               gt: new Date(),
             },
           },
+        },
+        location: {
+          contains: location || "",
         },
       },
       include: {
