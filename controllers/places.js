@@ -39,8 +39,10 @@ const getAll = async (req, res) => {
     const places = await prisma.place.findMany({
       where: {
         PlaceToUser: {
-          every: {
-            user: false,
+          none: {
+            endDate: {
+              gt: new Date(),
+            },
           },
         },
       },
@@ -59,6 +61,8 @@ const getAll = async (req, res) => {
 
     res.status(200).json(places);
   } catch (error) {
+    console.log(error);
+
     res.status(500).json({ message: "Unknown server error" });
   }
 };
