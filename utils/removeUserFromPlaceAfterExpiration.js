@@ -9,10 +9,12 @@ async function removeUserFromPlaceAfterExpiration() {
     const expiredBookings = await prisma.placeToUser.findMany({
       where: {
         endDate: {
-          lte: now,
+          gt: now,
         },
       },
     });
+
+    console.log(expiredBookings);
 
     for (const booking of expiredBookings) {
       if (booking) {

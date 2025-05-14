@@ -7,7 +7,7 @@ const hour = min * 60;
 
 setInterval(() => {
   removeBook();
-}, hour * 12);
+}, hour);
 
 const create = async (req, res) => {
   try {
