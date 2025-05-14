@@ -30,6 +30,8 @@ const create = async (req, res) => {
 
     res.status(201).json(place);
   } catch (error) {
+    console.log(error);
+
     res.status(500).json({ message: "Unknown server error" });
   }
 };

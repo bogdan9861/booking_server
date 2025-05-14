@@ -15,6 +15,6 @@ router.post("/", auth, fileMiddleware.single("image"), create);
 router.post("/book", auth, book);
 router.get("/", auth, getAll);
 router.get("/my", auth, getMy);
-router.delete("/", auth, remove);
+router.delete("/:id", auth, remove);
 
 module.exports = router;
